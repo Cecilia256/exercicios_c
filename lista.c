@@ -19,19 +19,26 @@ int contar_iguais(No *q, int v);
 int posicao(No *q, int v);
 void insere_ord(No** p, int v);
 //usar scanf("%d", &L->num) imprimir (L, L->num);
+
+/*return, cria a variavel a que deseja retornar na função int ex=função(parametros) ex=fun(L, 6);
+if(função(parametros)==n°do return) printf("Sim"); else printf("Não"); if(fun(L,6)==0) printf("sim");*/
+
+
 int main(){
    No *L = NULL;
+   
    printf("LISTA\n");
-    for(int i=5; i>=0;i--){
+    for(int i=0; i<=5;i++){
     insere_final(&L, i);}
-
+    
     imprime(L);
     printf("---------\n");
-    insere_ord(&L, 7);  
+    int retorno = busca(L, 5);
+    printf("%s", retorno ? "Verdadeiro" : "Falso");
     imprime(L);
     libera(&L);
- 
 }
+
 
 void remov_valor(No** p, int v){ 
     No* q = *p;
@@ -93,8 +100,8 @@ void insere_ord(No** p, int v){
         while(aux->prox!=NULL){
             if(aux->prox->valor > v) break;
             aux = aux->prox;
-            q->prox = aux->prox;
         }
+            q->prox = aux->prox;
             aux->prox = q;
 }}
 
@@ -110,7 +117,7 @@ void insere_final(No** p, int v){
     aux->prox= q;
     }     
 }
-short busca(No *q, int v){
+short busca(No *q, int v){//n funciona
     while(q!=NULL){
         if(q->valor==v) return 1;
         q = q->prox;
